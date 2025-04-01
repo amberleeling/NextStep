@@ -1,0 +1,199 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+<div class="container">
+  <%= render 'shared/navbar' %>
+
+    <div class="search-bar">
+      <h2 style="font-size: 22px; font-weight: 600; text-align: center; margin-top: 24px; margin-bottom: 24px;">Quick Apply ⚡️</h2>
+      <div class="search-input">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search Jobs...">
+      </div>
+    </div>
+
+  <div class="jobs-list" style="margin-top: 30px;">
+    <% if @jobs.any? %>
+      <% @jobs.each do |job| %>
+        <div class="job-card">
+          <div class="job-info">
+            <div class="company-logo">
+              <%# job.company_logo.present?  %>
+              <% if false %>
+                <%#= image_tag job.company_logo, class: "logo" %>
+              <% else %>
+                <div class="logo-placeholder bg-gray-200 w-12 h-12 rounded-lg"></div>
+              <% end %>
+            </div>
+
+            <div class="job-details">
+              <h3 class="text-lg font-medium"><%= job.position %></h3>
+              <p class="text-sm text-gray-500"><%= job.company %></p>
+              <p class="text-gray-600 text-sm mb-1"><%= job.description %></p>
+            </div>
+
+            <div class="job-actions">
+              <%= link_to "AI CL", cover_letter_job_path(job), class: "btn-ai-cl" %>
+              <%= link_to "Apply", job.link, class: "btn-apply", target: "_blank" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="no-jobs text-center py-8">
+        <p class="text-gray-500">No jobs found. Check back later for new opportunities!</p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+  <%= yield %>
+  <%= render 'shared/tabbar' %>
+</body>
+
+<style>
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.search-bar h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.search-input i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.sort-options {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.sort-select {
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.sort-options i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+.job-card {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+
+.job-info {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 15px;
+}
+
+.logo-placeholder {
+  min-width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.job-details {
+  flex: 1;
+}
+
+.job-details h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.job-details p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.job-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.btn-ai-cl {
+  background-color: #FFE4E1;
+  color: #FF4500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-apply {
+  background-color: #FF4500;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-ai-cl:hover,
+.btn-apply:hover {
+  opacity: 0.9;
+}
+</style>

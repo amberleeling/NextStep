@@ -1,0 +1,78 @@
+<div class="tabbar">
+  <a href="/dashboard" class="tab-item">
+    <i class="fas fa-home"></i>
+  </a>
+
+  <a href="/applications" class="tab-item">
+    <i class="fas fa-list"></i>
+  </a>
+
+  <a href="/applications/new" class="tab-item add-button">
+    <div class="plus-circle">
+      <i class="fas fa-plus"></i>
+    </div>
+  </a>
+
+  <a href="/cover_letter" class="tab-item">
+    <i class="fas fa-file-alt"></i>
+  </a>
+
+  <a href="/jobs" class="tab-item">
+    <i class="fas fa-bolt"></i>
+  </a>
+</div>
+
+<style>
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding-bottom: env(safe-area-inset-bottom);
+  border-radius: 20px;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.tab-item i {
+  font-size: 24px;
+}
+
+.add-button {
+  margin-bottom: 25px;
+}
+
+.plus-circle {
+  width: 60px;
+  height: 60px;
+  background: #FF4500;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 8px #FFE4E1;
+}
+
+.plus-circle i {
+  color: white;
+  font-size: 32px;
+  margin: 0;
+}
+
+.tab-item:hover {
+  color: #FF4500;
+}
+</style>

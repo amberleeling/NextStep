@@ -1,0 +1,22 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <%= render 'shared/navbar' %>
+
+    <h2 style="font-size: 22px; font-weight: 600; text-align: center; margin-top: 24px; margin-bottom: 24px;">Applications</h2>
+  </div>
+
+  <%= yield %>
+  <%= render 'shared/tabbar' %>
+</body>
+
+<style>
+  .container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
