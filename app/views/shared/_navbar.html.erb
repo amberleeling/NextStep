@@ -1,26 +1,37 @@
 <div class="navbar">
-  <div class="navbar-center">
-    <%= image_tag "nextstep_logo.png", width: 180, style: "margin-bottom: 16px;" %>
+  <div class="navbar-left">
+    <%= image_tag "nextstep_logo.png", alt: "NextStep", class: "navbar-logo" %>
+  </div>
+  <div class="navbar-right">
+    <%= link_to "#" do %>
+      <i class="fas fa-user-circle user-icon"></i>
+    <% end %>
   </div>
 </div>
 
+
 <style>
 .navbar {
-  position: relative;
-  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
 }
 
 .navbar-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   max-height: 40px;
-  max-width: 120px;
-
+  width: auto;
+  object-fit: contain;
 }
+
+.user-icon {
+  font-size: 28px;
+  color: #444;
+}
+
+
 
 
 
