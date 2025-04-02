@@ -28,8 +28,7 @@
           <%= f.label :status %><br>
           <%= f.select :status, ['pending', 'accepted', 'rejected'], selected: @application.status %>
         </div>
-
-        <%= f.submit "Save", style: "margin-top: 8px;" %>
+        <%= f.submit "Save", class: "w-full px-4 py-2 mt-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" %>
       <% end %>
     </div>
 

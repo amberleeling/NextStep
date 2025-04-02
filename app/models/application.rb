@@ -4,4 +4,6 @@ class Application < ApplicationRecord
   accepts_nested_attributes_for :job, allow_destroy: true
 
   enum status: { pending: "pending", accepted: "accepted", rejected: "rejected" }
+  validates :date, presence: true
+
 end

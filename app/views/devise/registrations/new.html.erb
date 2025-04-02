@@ -1,0 +1,79 @@
+<div class="signup-container">
+  <h2>Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: "field-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "field-input", placeholder: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, class: "field-label" %>
+      <% if @minimum_password_length %>
+        <em class="password-hint">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "field-input", placeholder: "password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: "field-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field-input", placeholder: "password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit", class: "submit-button" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+
+<style>
+.signup-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.field-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.password-hint {
+  color: #666;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.submit-button {
+  background-color: #333;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #444;
+}
+</style>

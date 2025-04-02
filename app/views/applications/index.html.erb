@@ -8,24 +8,35 @@
         <!-- 編輯與刪除 icon -->
         <div class="card-actions">
           <%= link_to edit_application_path(application) do %>
-            <i class="fas fa-pen"></i>
+            <i class="fas fa-pen" style="color: #A6A6A6;"></i>
           <% end %>
 
           <%= link_to application_path(application), data: { turbo_method: "delete", turbo_confirm: "Are you sure?", turbo_frame: "_top" }, class: "delete-icon" do %>
-            <i class="fas fa-trash"></i>
+            <i class="fas fa-trash" style="color: #A6A6A6;"></i>
           <% end %>
         </div>
 
         <!-- 顯示內容 -->
         <div class="display-mode" id="display-<%= application.id %>">
-          <h3><%= application.job.position %></h3>
-          <p style="color: #666;"><%= application.job.company %></p>
-          <p style="color: #888; font-size: 14px;">
-            Status: <strong><%= application.status.capitalize %></strong> |
-            Applied on: <%= application.date.strftime("%Y-%m-%d") %>
+          <h3 class="mb-2"><%= application.job.position %></h3>
+          <p class="mb-3" style="color: #666;"><%= application.job.company %></p>
+
+          <p style="color: #888; font-size: 14px;" class="mb-2">
+          <% status_style = case application.status
+            when "accepted" then "background-color: rgba(69, 237, 189, 0.4); color: #1C7F6E;"
+            when "rejected" then "background-color: rgba(185, 42, 37, 0.4); color: #8B1D18;"
+            else "background-color: #E5E7EB; color: #374151;"
+          end %>
+
+
+            <span class="px-2 py-1 rounded-full" style="font-size: 12px; margin-right: 8px; <%= status_style %>">
+            <%= application.status.capitalize %>
+          </span>
+          <%= application.date.present? ? application.date.strftime("%Y-%m-%d") : "N/A" %>
           </p>
         </div>
       </div>
+
     <% end %>
   <% end %>
 <% end %>
@@ -44,19 +55,6 @@
   gap: 10px;
 }
 
-.edit-icon i,
-.delete-icon i {
-  font-size: 14px;
-  color: #999;
-  cursor: pointer;
-}
 
-.edit-icon:hover i {
-  color: #007bff;
-}
-
-.delete-icon:hover i {
-  color: #ff4d4f;
-}
 
 </style>
