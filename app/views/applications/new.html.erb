@@ -1,50 +1,6 @@
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
+<h2 style="font-size: 22px; font-weight: 600; margin-top: 24px; margin-bottom: 24px;">+ Add your application</h2>
 
-
-<body>
-
-<div class="container">
-  <%= render 'shared/navbar' %>
-
-  <h2 style="font-size: 22px; font-weight: 600; margin-top: 24px; margin-bottom: 24px;">+ Add your application</h2>
-
-  <%= form_with(model: @application, local: true) do |f| %>
-    <div class="form-group">
-      <%= f.label :company, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_field :company, class: "form-control", placeholder: "Company" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :position, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_field :position, class: "form-control", placeholder: "Position" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :date, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.date_field :date, class: "form-control", lang: "en"  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :job_description, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_area :job_description, class: "form-control", placeholder: "Job description" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :link, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.url_field :link, class: "form-control", placeholder: "link" %>
-    </div>
-
-    <%= f.submit "Submit", class: "btn btn-dark", style: "margin: 0px 0px 20px 0px;" %>
-  <% end %>
-</div>
-
-
-  <%= yield %>
-  <%= render 'shared/tabbar' %>
-</body>
-
+<%= render "form", application: @application %>
 
 <style>
 .container {

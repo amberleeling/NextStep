@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_application, only: [:edit, :update, :destroy]
 
   def index
     @applications = current_user.applications.includes(:job).order(date: :desc)
@@ -7,48 +7,43 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
+    @application.build_job
   end
 
   def create
-    job = Job.create!(job_params)
+    @application = Application.new(application_params)
+    @application.user = current_user
 
-    @application = current_user.applications.build(
-      job: job,
-      date: application_params[:date],
-      status: "pending"
-    )
-
-
-      if @application.save
-        redirect_to applications_path, notice: "Application submitted!"
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @application.save
+      redirect_to applications_path, notice: "Application submitted!"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
-      @application = Application.find(params[:id])
-      if @application.update(application_params)
-        redirect_to applications_path, notice: "Updated!"
-      else
-        render :index, status: :unprocessable_entity
-      end
+    if @application.update(application_params)
+      redirect_to applications_path, notice: "Updated!"
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @application.destroy
+    redirect_to applications_path, notice: "Application deleted!"
   end
 
   private
 
-    def application_params
-      params.require(:application).permit(:date)
-    end
+  def set_application
+    @application = Application.find(params[:id])
+  end
 
-    def job_params
-      params.require(:application).permit(:company, :position, :description, :link)
-    end
-
+  def application_params
+    params.require(:application).permit(:date, :status, job_attributes: [:company, :position, :description, :link])
+  end
 end

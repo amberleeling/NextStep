@@ -1,86 +1,34 @@
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
+<h2 class="text-[22px] font-bold mb-4 mt-4">Applications</h2>
 
-<body>
-  <div class="container">
-    <%= render 'shared/navbar' %>
+<% if @applications.any? %>
+  <% @applications.each do |application| %>
+    <%= turbo_frame_tag application do %>
+      <div class="application-card" id="application-<%= application.id %>" style="position: relative; margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
 
-    <h2 style="font-size: 22px; font-weight: 600; margin-top: 24px; margin-bottom: 24px;">Applications</h2>
+        <!-- 編輯與刪除 icon -->
+        <div class="card-actions">
+          <%= link_to edit_application_path(application) do %>
+            <i class="fas fa-pen"></i>
+          <% end %>
 
-    <% if @applications.any? %>
-      <% @applications.each do |application| %>
-        <div class="application-card" id="application-<%= application.id %>" style="position: relative; margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-
-          <!-- 編輯與刪除 icon -->
-          <div class="card-actions">
-            <a href="javascript:void(0);" class="edit-toggle" data-id="<%= application.id %>">
-              <i class="fas fa-pen"></i>
-            </a>
-            <%= link_to application_path(application), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-icon" do %>
-              <i class="fas fa-trash"></i>
-            <% end %>
-          </div>
-
-          <!-- 顯示內容 -->
-          <div class="display-mode" id="display-<%= application.id %>">
-            <h3><%= application.job.position %></h3>
-            <p style="color: #666;"><%= application.job.company %></p>
-            <p style="color: #888; font-size: 14px;">
-              Status: <strong><%= application.status.capitalize %></strong> |
-              Applied on: <%= application.date.strftime("%Y-%m-%d") %>
-            </p>
-          </div>
-
-          <!-- 編輯表單（預設隱藏） -->
-          <div class="edit-form" id="form-<%= application.id %>" style="display: none;">
-            <%= form_with model: application, local: true do |f| %>
-              <div style="margin-top: 10px;">
-                <%= f.label :position %><br>
-                <%= f.text_field :position, value: application.job.position %>
-              </div>
-
-              <div>
-                <%= f.label :description %><br>
-                <%= f.text_area :description, value: application.job.description %>
-              </div>
-
-              <div>
-                <%= f.label :status %><br>
-                <%= f.select :status, ['pending', 'accepted', 'rejected'], selected: application.status %>
-              </div>
-
-              <%= f.submit "Save", style: "margin-top: 8px;" %>
-            <% end %>
-          </div>
+          <%= link_to application_path(application), data: { turbo_method: "delete", turbo_confirm: "Are you sure?", turbo_frame: "_top" }, class: "delete-icon" do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
         </div>
-      <% end %>
+
+        <!-- 顯示內容 -->
+        <div class="display-mode" id="display-<%= application.id %>">
+          <h3><%= application.job.position %></h3>
+          <p style="color: #666;"><%= application.job.company %></p>
+          <p style="color: #888; font-size: 14px;">
+            Status: <strong><%= application.status.capitalize %></strong> |
+            Applied on: <%= application.date.strftime("%Y-%m-%d") %>
+          </p>
+        </div>
+      </div>
     <% end %>
-  </div>
-
-  <%= yield %>
-  <%= render 'shared/tabbar' %>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const editButtons = document.querySelectorAll(".edit-toggle");
-
-    editButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const id = button.dataset.id;
-        const form = document.getElementById(`form-${id}`);
-        const display = document.getElementById(`display-${id}`);
-
-        // 切換顯示/隱藏
-        form.style.display = form.style.display === "none" ? "block" : "none";
-        display.style.display = display.style.display === "none" ? "block" : "none";
-      });
-    });
-  });
-</script>
-</body>
-
+  <% end %>
+<% end %>
 
 <style>
   .container {

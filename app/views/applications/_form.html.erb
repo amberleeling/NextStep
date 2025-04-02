@@ -1,0 +1,30 @@
+<%= form_with(model: application) do |f| %>
+  <%= f.fields_for :job do |job_fields| %>
+    <div class="form-group">
+      <%= job_fields.label :company, style: "margin-bottom: 8px; display: block;" %>
+      <%= job_fields.text_field :company, class: "form-control", placeholder: "Company" %>
+    </div>
+
+    <div class="form-group">
+      <%= job_fields.label :position, style: "margin-bottom: 8px; display: block;" %>
+      <%= job_fields.text_field :position, class: "form-control", placeholder: "Position" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, style: "margin-bottom: 8px; display: block;" %>
+      <%= f.text_field :date, class: "form-control", data: { controller: "flatpickr" } %>
+    </div>
+
+    <div class="form-group">
+      <%= job_fields.label :description, style: "margin-bottom: 8px; display: block;" %>
+      <%= job_fields.text_area :description, class: "form-control", placeholder: "Job description" %>
+    </div>
+
+    <div class="form-group">
+      <%= job_fields.label :link, style: "margin-bottom: 8px; display: block;" %>
+      <%= job_fields.url_field :link, class: "form-control", placeholder: "link" %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Submit", class: "btn btn-dark", style: "margin: 0px 0px 20px 0px;" %>
+<% end %>

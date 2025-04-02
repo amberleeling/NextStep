@@ -1,2 +1,4 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms"
+
+@import "flatpickr/dist/flatpickr.min.css";

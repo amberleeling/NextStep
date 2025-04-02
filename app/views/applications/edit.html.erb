@@ -1,0 +1,37 @@
+<%= turbo_frame_tag @application do %>
+  <div class="application-card" style="position: relative; margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+
+    <!-- 編輯與刪除 icon -->
+    <div class="card-actions">
+      <%= link_to applications_path  do %>
+        <i class="fas fa-arrow-left"></i>
+      <% end %>
+    </div>
+
+
+    <!-- 編輯表單（預設隱藏） -->
+    <div class="edit-form" id="form-<%= @application.id %>">
+      <%= form_with model: @application, local: true do |f| %>
+        <%= f.fields_for :job do |job_fields| %>
+          <div style="margin-top: 10px;">
+            <%= job_fields.label :position %><br>
+            <%= job_fields.text_field :position, value: @application.job.position %>
+          </div>
+
+          <div>
+            <%= job_fields.label :description %><br>
+            <%= job_fields.text_area :description, value: @application.job.description %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.label :status %><br>
+          <%= f.select :status, ['pending', 'accepted', 'rejected'], selected: @application.status %>
+        </div>
+
+        <%= f.submit "Save", style: "margin-top: 8px;" %>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>
