@@ -16,4 +16,7 @@ Rails.application.routes.draw do
 
   get '/cover_letter', to: 'cover_letters#show'
   post '/cover_letters', to: 'cover_letters#create'
+
+  get "webmanifest"    => "pwa#manifest"
+  get "service-worker" => "pwa#service_worker"
 end
