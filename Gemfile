@@ -28,6 +28,8 @@ gem "cssbundling-rails"
 
 gem "devise", "~> 4.9"
 
+gem "ruby-openai"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
