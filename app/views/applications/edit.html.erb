@@ -4,7 +4,7 @@
     <!-- 編輯與刪除 icon -->
     <div class="card-actions">
       <%= link_to applications_path  do %>
-        <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-times fa-lg"></i>
       <% end %>
     </div>
 
@@ -13,22 +13,22 @@
     <div class="edit-form" id="form-<%= @application.id %>">
       <%= form_with model: @application, local: true do |f| %>
         <%= f.fields_for :job do |job_fields| %>
-          <div style="margin-top: 10px;">
-            <%= job_fields.label :position %><br>
-            <%= job_fields.text_field :position, value: @application.job.position %>
+          <div class="mb-4">
+            <%= job_fields.label :position, class: "block mb-2" %>
+            <%= job_fields.text_field :position, value: @application.job.position, class: "w-full" %>
           </div>
 
-          <div>
-            <%= job_fields.label :description %><br>
-            <%= job_fields.text_area :description, value: @application.job.description %>
+          <div class="mb-4">
+            <%= job_fields.label :description, class: "block mb-2" %>
+            <%= job_fields.text_area :description, value: @application.job.description, class: "w-full" %>
           </div>
         <% end %>
 
-        <div>
-          <%= f.label :status %><br>
-          <%= f.select :status, ['pending', 'accepted', 'rejected'], selected: @application.status %>
+        <div class="mb-4">
+          <%= f.label :status, class: "block mb-2" %>
+          <%= f.select :status, ['Pending', 'Accepted', 'Rejected'], selected: @application.status, class: "w-full" %>
         </div>
-        <%= f.submit "Save", class: "w-full px-4 py-2 mt-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" %>
+        <%= f.submit "Save", class: "w-full px-4 py-2 mt-4 text-white bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" %>
       <% end %>
     </div>
 
