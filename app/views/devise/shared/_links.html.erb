@@ -3,7 +3,9 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <div class="w-full">
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "block w-full px-4 py-2 text-white bg-[#BFBFBF] rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 text-center" %><br />
+  </div>
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

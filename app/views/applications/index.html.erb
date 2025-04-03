@@ -29,7 +29,7 @@
           end %>
 
 
-            <span class="px-2 py-1 rounded-full" style="font-size: 12px; margin-right: 8px; <%= status_style %>">
+            <span class="px-2 py-1 text-center rounded-full" style="font-size: 12px; margin-right: 8px; <%= status_style %>; text-align: center; display: inline-block;">
             <%= application.status.capitalize %>
           </span>
           <%= application.date.present? ? application.date.strftime("%Y-%m-%d") : "N/A" %>
