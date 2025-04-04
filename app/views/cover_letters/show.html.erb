@@ -1,7 +1,8 @@
-  <h2 class="text-[22px] font-bold mb-4 mt-4">AI Cover Letter 📝</h2>
+<h2 class="text-[22px] font-bold mb-4 mt-4">AI Cover Letter 📝</h2>
 
-  <%= turbo_frame_tag "cover_letter_form" do %>
-   <%= form_with(url: cover_letters_path, method: :post) do |f| %>
+<%= turbo_stream_from "user_#{current_user.id}_cover_letter_form" %>
+<%= turbo_frame_tag "cover_letter_form" do %>
+  <%= form_with(url: cover_letters_path, method: :post) do |f| %>
     <div class="form-group">
       <%= f.label :company, style: "margin-bottom: 8px; display: block;" %>
       <%= f.text_field :company, class: "form-control", placeholder: "Company" %>
@@ -17,13 +18,9 @@
       <%= f.text_area :job_description, class: "form-control", placeholder: "Job description" %>
     </div>
 
-      <%= f.submit "Submit", class: "btn btn-dark" %>
-    <% end %>
+    <%= f.submit "Submit", class: "btn btn-dark" %>
   <% end %>
-
-
-
-
+<% end %>
 
 <style>
 .container {

@@ -30,6 +30,9 @@ gem "devise", "~> 4.9"
 
 gem "ruby-openai"
 
+gem 'solid_queue', '~> 1.1', '>= 1.1.4'
+gem 'solid_cable'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
