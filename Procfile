@@ -1,2 +1,2 @@
-web: bundle exec puma -C config/puma.rb
-worker: bin/jobs
+web: bundle exec rails server -p $PORT
+worker: bundle exec bin/jobs
