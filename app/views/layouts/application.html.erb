@@ -14,68 +14,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
-    <style>
-      /* Spinner */
-      .spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid #FF4500;
-        border-top: 4px solid transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      #onboarding-screen {
-        position: fixed;
-        z-index: 9999;
-        background: white;
-        top: 0; left: 0; right: 0; bottom: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        transition: opacity 0.4s ease;
-      }
-    </style>
   </head>
 
-  <body>
-    <div id="onboarding-screen">
-      <img src="<%= asset_path('app-icon-512.png') %>" alt="Logo" width="120" style="margin-bottom: 20px;">
-      <div class="spinner"></div>
-    </div>
-
+  <body data-controller="loading">
     <div class="p-5 max-w-2xl mx-auto mb-[74px]">
       <%= render 'shared/navbar' %>
       <%= yield %>
     </div>
     <%= render 'shared/tabbar' %>
 
-    <script>
-  document.addEventListener("turbo:load", () => {
-    const onboarding = document.getElementById("onboarding-screen");
-
-    const hasSeenOnboarding = localStorage.getItem("seenOnboarding");
-
-    if (!hasSeenOnboarding) {
-      onboarding.style.display = "flex";
-      setTimeout(() => {
-        onboarding.style.opacity = 0;
-        onboarding.style.pointerEvents = "none";
-        setTimeout(() => onboarding.remove(), 500);
-      }, 1500);
-
-      localStorage.setItem("seenOnboarding", "true");
-    } else {
-      onboarding.remove();
-    }
-  });
-</script>
-
+    <div data-loading-target="screen" class="hidden fixed z-[9999] bg-white inset-0 flex justify-center items-center flex-col transition-opacity duration-400">
+      <img src="<%= asset_path('app-icon-512.png') %>" alt="Logo" class="w-[120px] mb-5">
+      <div class="w-10 h-10 border-4 border-[#FF4500] border-t-transparent rounded-full animate-spin"></div>
+    </div>
   </body>
 </html>

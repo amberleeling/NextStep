@@ -1,36 +1,49 @@
 <%= turbo_frame_tag @application do %>
-  <div class="application-card" style="position: relative; margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
-
-    <!-- 編輯與刪除 icon -->
-    <div class="card-actions">
+  <div class="application-card mb-4" style="position: relative; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
+    <!-- Keep only the form part -->
+    <div class="card-actions" style="position: absolute; top: 12px; right: 12px;">
       <%= link_to applications_path  do %>
-        <i class="fas fa-times fa-lg"></i>
+        <i class="fas fa-times fa-lg" style="margin-right: 10px;"></i>
       <% end %>
     </div>
 
-
-    <!-- 編輯表單（預設隱藏） -->
     <div class="edit-form" id="form-<%= @application.id %>">
       <%= form_with model: @application, local: true do |f| %>
         <%= f.fields_for :job do |job_fields| %>
-          <div class="mb-4">
-            <%= job_fields.label :position, class: "block mb-2" %>
-            <%= job_fields.text_field :position, value: @application.job.position, class: "w-full" %>
+          <div class="mb-4" style="margin-top: 20px;">
+            <%= job_fields.label :company, "Company", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= job_fields.text_field :company, value: @application.job.company, class: "mt-1 block w-full rounded-md border-gray-200 shadow-xs focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm" %>
           </div>
 
           <div class="mb-4">
-            <%= job_fields.label :description, class: "block mb-2" %>
-            <%= job_fields.text_area :description, value: @application.job.description, class: "w-full" %>
+            <%= job_fields.label :position, "Position", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= job_fields.text_field :position, value: @application.job.position, class: "mt-1 block w-full rounded-md border-gray-200 shadow-xs focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm" %>
+          </div>
+
+          <div class="mb-4">
+            <%= job_fields.label :description, "Job Description", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= job_fields.text_area :description, value: @application.job.description, rows: 4, class: "mt-1 block w-full rounded-md border-gray-200 shadow-xs focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm" %>
           </div>
         <% end %>
 
         <div class="mb-4">
-          <%= f.label :status, class: "block mb-2" %>
-          <%= f.select :status, ['Pending', 'Accepted', 'Rejected'], selected: @application.status, class: "w-full" %>
+          <%= f.label :date, "Application Date", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.date_select :date, selected: @application.date, class: "mt-1 block w-full rounded-md border-gray-200 shadow-xs focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm", style: "margin-top: 0;" %>
         </div>
-        <%= f.submit "Save", class: "w-full px-4 py-2 mt-4 text-white bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50" %>
+
+        <div class="mb-4">
+          <%= f.label :status, "Application Status", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.select :status,
+              Application.statuses.keys.map { |s| [s.capitalize, s] },
+              { selected: @application.status },
+              { class: "mt-1 block w-full rounded-md border-gray-200 shadow-xs focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm" }
+          %>
+        </div>
+
+        <div class="flex justify-end">
+          <%= f.submit "Save Changes", class: "inline-flex justify-center rounded-md border border-transparent bg-[#FF4500] py-2 px-4 text-sm font-medium text-white shadow-xs focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:ring-offset-1" %>
+        </div>
       <% end %>
     </div>
-
   </div>
 <% end %>

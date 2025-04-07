@@ -9,3 +9,6 @@ application.register("chart", ChartController)
 
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
+
+import LoadingController from "./loading_controller"
+application.register("loading", LoadingController)

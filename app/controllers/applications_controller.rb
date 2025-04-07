@@ -44,6 +44,6 @@ class ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:date, :status, job_attributes: [:company, :position, :description, :link])
+    params.require(:application).permit(:date, :status, job_attributes: [:id, :company, :position, :description, :link])
   end
 end

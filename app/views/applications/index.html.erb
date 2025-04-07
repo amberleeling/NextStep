@@ -1,6 +1,6 @@
 <h2 class="text-[22px] font-bold mb-4 mt-4">Applications 🎯</h2>
 
-<% if @applications.any? %>
+<% if @applications.present? %>
   <% @applications.each do |application| %>
     <%= turbo_frame_tag application do %>
       <div class="application-card" id="application-<%= application.id %>" style="position: relative; margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 8px;">
