@@ -1,6 +1,8 @@
 <div class="navbar">
   <div class="navbar-left">
-    <%= image_tag "nextstep_logo.png", alt: "NextStep", class: "navbar-logo" %>
+    <%= link_to dashboard_path do %>
+      <%= image_tag "nextstep_logo.png", alt: "NextStep", class: "navbar-logo" %>
+    <% end %>
   </div>
   <div class="navbar-right">
     <button onclick="toggleBottomSheet()" class="user-button">
@@ -21,7 +23,7 @@
       <div class="label">User Account:</div>
       <div class="value"><%= current_user.email %></div>
     </div>
-    <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "logout-button" %>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "logout-button", style: "margin-bottom: 20px;" %>
   </div>
 </div>
 <% end %>

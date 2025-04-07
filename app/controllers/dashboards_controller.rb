@@ -13,8 +13,8 @@ class DashboardsController < ApplicationController
     current_month = Time.zone.today.beginning_of_month
     last_month = current_month - 1.month
 
-    current_month_apps = applications.where(created_at: current_month..Time.zone.today)
-    last_month_apps = applications.where(created_at: last_month.beginning_of_month..last_month.end_of_month)
+    current_month_apps = applications.where(date: current_month..Time.zone.today)
+    last_month_apps = applications.where(date: last_month.beginning_of_month..last_month.end_of_month)
 
     current_month_count = current_month_apps.count
     last_month_count = last_month_apps.count
@@ -29,8 +29,8 @@ class DashboardsController < ApplicationController
     current_week = Time.zone.today.beginning_of_week
     last_week = current_week - 1.week
 
-    current_week_apps = applications.where(created_at: current_week..Time.zone.today)
-    last_week_apps = applications.where(created_at: last_week.beginning_of_week..last_week.end_of_week)
+    current_week_apps = applications.where(date: current_week..Time.zone.today)
+    last_week_apps = applications.where(date: last_week.beginning_of_week..last_week.end_of_week)
 
     current_week_count = current_week_apps.count
     last_week_count = last_week_apps.count
