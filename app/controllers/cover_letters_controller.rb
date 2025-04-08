@@ -1,5 +1,8 @@
 class CoverLettersController < ApplicationController
   def show
+    if params[:id].present?
+      @job = Job.find(params[:id])
+    end
   end
 
   def create

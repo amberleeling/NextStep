@@ -5,17 +5,17 @@
   <%= form_with(url: cover_letters_path, method: :post) do |f| %>
     <div class="form-group">
       <%= f.label :company, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_field :company, class: "form-control", placeholder: "Company" %>
+      <%= f.text_field :company, value: @job&.company, class: "form-control", placeholder: "Company" %>
     </div>
 
     <div class="form-group">
       <%= f.label :position, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_field :position, class: "form-control", placeholder: "Position" %>
+      <%= f.text_field :position, value: @job&.position, class: "form-control", placeholder: "Position" %>
     </div>
 
     <div class="form-group">
       <%= f.label :job_description, style: "margin-bottom: 8px; display: block;" %>
-      <%= f.text_area :job_description, class: "form-control", placeholder: "Job description" %>
+      <%= f.text_area :job_description, value: @job&.description, class: "form-control", placeholder: "Job description" %>
     </div>
 
     <%= f.submit "Submit", class: "btn btn-dark" %>
