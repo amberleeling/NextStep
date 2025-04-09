@@ -1,5 +1,26 @@
+<div class="flex justify-between items-center">
+  <h2 class="text-[22px] font-bold mb-4 mt-4">AI Cover Letter 📝</h2>
+
+  <button onclick="copyContent(this)" class="p-2 text-gray-500 hover:text-gray-700" title="Copy to clipboard">
+    <%= image_tag "copy-icon.png", class: "w-6 h-6", alt: "Copy icon" %>
+  </button>
+</div>
+
 <div class="cover-letter-content">
-  <div class="p-4 bg-gray-50 rounded-lg whitespace-pre-line">
+  <div id="cover-letter-text" class="px-4 bg-gray-50 rounded-lg whitespace-pre-line relative">
     <%= content.to_s.strip.gsub(/\A\n+/, '') %>
   </div>
 </div>
+
+<script>
+function copyContent(button) {
+  const text = document.querySelector('#cover-letter-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i>';
+    setTimeout(() => {
+      button.innerHTML = originalIcon;
+    }, 2000);
+  });
+}
+</script>

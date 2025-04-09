@@ -12,3 +12,6 @@ application.register("flatpickr", FlatpickrController)
 
 import LoadingController from "./loading_controller"
 application.register("loading", LoadingController)
+
+import SearchFormController from "./search_form_controller"
+application.register("search-form", SearchFormController)

@@ -2,7 +2,15 @@
       <h2 class="text-[22px] font-bold mb-4 mt-4">Quick Apply ⚡️</h2>
       <div class="search-input">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search Jobs...">
+        <%= form_with(url: jobs_path, method: :get, data: { turbo_frame: "jobs-list", controller: "search-form", search_form_target: "form" }) do |f| %>
+          <%= f.text_field :query,
+              value: params[:query],
+              placeholder: "Search Jobs...",
+              class: "search-input-field",
+              data: {
+                action: "keyup->search-form#search"
+              } %>
+        <% end %>
       </div>
     </div>
 

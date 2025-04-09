@@ -16,22 +16,23 @@ jobs_data = JSON.parse(file)
 # Create jobs from JSON data
 jobs_data.each do |category, jobs|
   jobs.each do |job|
-    Job.create!(company: job['organization'], position: job['title'], link: job['url'], image_url: job['organization_logo'])
+    Job.create!(company: job['organization'], position: job['title'], link: job['url'], image_url: job['organization_logo'], system: true)
   end
 end
 
 # Create applications
-Application.create!(status: 'accepted', date: '2025-02-09', user: user2, job: Job.all[4])
-Application.create!(status: 'accepted', date: '2025-01-07', user: user1, job: Job.all[3])
-Application.create!(status: 'pending', date: '2025-03-09', user: user3, job: Job.all[2])
-Application.create!(status: 'pending', date: '2025-01-20', user: user3, job: Job.all[2])
-Application.create!(status: 'accepted', date: '2025-03-03', user: user3, job: Job.all[4])
-Application.create!(status: 'accepted', date: '2025-01-16', user: user3, job: Job.all[2])
-Application.create!(status: 'pending', date: '2025-01-25', user: user2, job: Job.all[1])
-Application.create!(status: 'rejected', date: '2025-03-10', user: user1, job: Job.all[1])
-Application.create!(status: 'rejected', date: '2025-02-01', user: user2, job: Job.all[3])
-Application.create!(status: 'rejected', date: '2025-03-11', user: user2, job: Job.all[3])
-
+Application.create!(status: 'accepted', date: '2025-03-09', user: user1, job: Job.all[4])
+Application.create!(status: 'accepted', date: '2025-03-07', user: user1, job: Job.all[3])
+Application.create!(status: 'pending', date: '2025-03-09', user: user1, job: Job.all[2])
+Application.create!(status: 'pending', date: '2025-03-20', user: user1, job: Job.all[2])
+Application.create!(status: 'accepted', date: '2025-03-03', user: user1, job: Job.all[4])
+Application.create!(status: 'accepted', date: '2025-04-01', user: user1, job: Job.all[2])
+Application.create!(status: 'pending', date: '2025-04-03', user: user1, job: Job.all[1])
+Application.create!(status: 'rejected', date: '2025-04-04', user: user1, job: Job.all[1])
+Application.create!(status: 'rejected', date: '2025-04-05', user: user1, job: Job.all[3])
+Application.create!(status: 'rejected', date: '2025-04-06', user: user1, job: Job.all[3])
+Application.create!(status: 'accepted', date: '2025-04-07', user: user1, job: Job.all[2])
+Application.create!(status: 'pending', date: '2025-04-08', user: user1, job: Job.all[1])
 puts 'Seeding complete.'
 
 
