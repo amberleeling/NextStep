@@ -1,0 +1,9 @@
+<%= turbo_stream.update "jobs" do %>
+  <% if @jobs.any? %>
+    <% render @jobs %>
+  <% else %>
+  <div class="no-jobs text-center py-8">
+      <p class="text-gray-500">No jobs found. Check back later for new opportunities!</p>
+    </div>
+  <% end %>
+<% end %>

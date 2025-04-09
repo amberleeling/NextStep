@@ -1,0 +1,23 @@
+<div class="job-card">
+  <div class="job-info">
+    <div class="company-logo">
+      <%# job.company_logo.present?  %>
+      <% if job.image_url.present? %>
+        <%= image_tag job.image_url, class: "w-12 h-12 rounded-lg" %>
+      <% else %>
+        <div class="logo-placeholder bg-gray-200 w-12 h-12 rounded-lg"></div>
+      <% end %>
+    </div>
+
+    <div class="job-details">
+      <h3 class="text-lg font-medium"><%= job.position %></h3>
+      <p class="text-sm text-gray-500"><%= job.company %></p>
+      <p class="text-gray-600 text-sm mb-1"><%= job.description %></p>
+    </div>
+
+    <div class="job-actions">
+      <%= link_to "AI CL", cover_letter_job_path(job), class: "btn-ai-cl" %>
+      <%= link_to "Apply", job.link, class: "btn-apply", target: "_blank" %>
+    </div>
+  </div>
+</div>
