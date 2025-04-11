@@ -16,7 +16,7 @@
     </div>
 
     <div class="job-actions">
-      <%= link_to "AI CL", cover_letter_job_path(job), class: "btn-ai-cl" %>
+      <%= link_to "AI CL", cover_letter_job_path(job), class: "btn-ai-cl", data: { turbo_frame: "_top" } %>
       <%= link_to "Apply", job.link, class: "btn-apply", target: "_blank" %>
     </div>
   </div>
