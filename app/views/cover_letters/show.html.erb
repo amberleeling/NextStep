@@ -1,6 +1,6 @@
 
 <%= turbo_stream_from "user_#{current_user.id}_cover_letter_form" %>
-<%= turbo_frame_tag "cover_letter_form" do %>
+<div id="cover_letter_form">
   <div class="flex justify-between items-center">
     <h2 class="text-[22px] font-bold mb-4 mt-4">AI Cover Letter 📝</h2>
   </div>
@@ -23,7 +23,7 @@
 
     <%= f.submit "Submit", class: "btn btn-dark" %>
   <% end %>
-<% end %>
+</div>
 
 <style>
 .container {

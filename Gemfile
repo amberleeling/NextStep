@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
@@ -28,9 +28,9 @@ gem "cssbundling-rails"
 
 gem "devise", "~> 4.9"
 
-gem "ruby-openai"
+gem 'ruby_llm', '~> 1.6', '>= 1.6.4'
 
-gem 'solid_queue', '~> 1.1', '>= 1.1.4'
+# gem 'solid_queue', '~> 1.1', '>= 1.1.4'
 gem 'solid_cable'
 
 # Use Redis adapter to run Action Cable in production
