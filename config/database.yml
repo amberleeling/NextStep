@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: next_step_production
-  username: next_step
-  password: <%= ENV["NEXT_STEP_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
