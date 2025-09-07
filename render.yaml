@@ -7,10 +7,12 @@ services:
     startCommand: './bin/rails server'
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: next-step
-          property: connectionString
+        sync: false
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
         value: 2
+      - key: RAILS_ENV
+        value: production
+      - key: RACK_ENV
+        value: production
