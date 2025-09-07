@@ -1,6 +1,7 @@
 services:
   - type: web
     name: next-step
+    region: frankfurt
     runtime: ruby
     plan: free
     buildCommand: './bin/render-build.sh'
