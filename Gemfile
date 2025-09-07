@@ -30,7 +30,6 @@ gem "devise", "~> 4.9"
 
 gem 'ruby_llm', '~> 1.6', '>= 1.6.4'
 
-# gem 'solid_queue', '~> 1.1', '>= 1.1.4'
 gem 'solid_cable'
 
 # Use Redis adapter to run Action Cable in production
