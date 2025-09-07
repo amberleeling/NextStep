@@ -8,8 +8,6 @@ services:
     envVars:
       - key: DATABASE_URL
         sync: false
-      - key: RAILS_MASTER_KEY
-        sync: false
       - key: WEB_CONCURRENCY
         value: 2
       - key: RAILS_ENV
