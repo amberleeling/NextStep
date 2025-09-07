@@ -9,6 +9,8 @@ services:
     envVars:
       - key: DATABASE_URL
         sync: false
+      - key: RAILS_MASTER_KEY
+        sync: false
       - key: GITHUB_TOKEN
         sync: false
       - key: WEB_CONCURRENCY
