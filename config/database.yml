@@ -79,6 +79,6 @@ test:
 #
 production:
   <<: *default
+  encoding: utf8
   database: next_step_production
-  username: next_step
-  password: <%= ENV["NEXT_STEP_DATABASE_PASSWORD"] %>
+  url: <%= ENV.fetch("DATABASE_URL") %>
